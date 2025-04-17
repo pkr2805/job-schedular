@@ -2,6 +2,15 @@
 
 A modern job scheduling application with a Spring Boot backend and Next.js frontend.
 
+## Demo
+
+The complete demo application is available in the [demo](./demo) directory.
+
+### What's Inside the Demo
+
+- **[Backend](./demo/backend)**: Spring Boot application with REST APIs, job scheduling, and Kafka integration
+- **[Frontend](./demo/frontend)**: Next.js application with modern UI components and real-time notifications
+
 ## Features
 
 - Create and manage scheduled jobs
@@ -11,6 +20,10 @@ A modern job scheduling application with a Spring Boot backend and Next.js front
 - Job status tracking and history
 - Execution logs and errors
 - Dynamic JAR file selection
+
+## Getting Started
+
+See the [demo README](./demo/README.md) for detailed setup instructions.
 
 ## Technology Stack
 
