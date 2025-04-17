@@ -91,4 +91,4 @@ The application follows a layered architecture:
 - **Model Layer**: Entity classes representing the domain
 - **Frontend**: React components and API services
 
-Jobs are executed asynchronously using a thread pool, and status updates are sent via Kafka and WebSockets. 
+Jobs are executed asynchronously using a thread pool, and status updates are sent via Kafka and WebSockets.
