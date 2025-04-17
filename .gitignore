@@ -1,0 +1,43 @@
+# Java/Maven
+backend/target/
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+.mvn/
+mvnw
+mvnw.cmd
+
+# Frontend (Next.js)
+frontend_new/frontend/node_modules/
+frontend_new/frontend/.next/
+frontend_new/frontend/out/
+frontend_new/frontend/.pnpm-debug.log*
+frontend_new/frontend/npm-debug.log*
+frontend_new/frontend/yarn-debug.log*
+frontend_new/frontend/yarn-error.log*
+frontend_new/frontend/.pnpm-store/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Application specific
+*.env
+*.env.local
+application-local.properties
+h2-data/
+
+# Logs
+logs/
+*.log 
