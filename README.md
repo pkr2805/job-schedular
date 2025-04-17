@@ -23,8 +23,7 @@ A modern web application for scheduling and managing executable JAR files with a
 ### Backend
 - **Java Spring Boot**: For robust server-side processing
 - **Spring Data JPA**: For data persistence and ORM
-- **H2 Database**: For local development
-- **Lombok**: For reducing boilerplate code
+- **H2 Database**: For local development(MODE=PostgreSQL can simulate Yugabyte/Postgres behavior)
 - **RESTful API**: For communication with the frontend
 
 ### Frontend
