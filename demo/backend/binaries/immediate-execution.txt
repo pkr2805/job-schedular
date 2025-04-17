@@ -1,0 +1,17 @@
+This is a text file for immediate execution.
+When this job is scheduled for immediate execution, the job scheduler will process it right away.
+
+Job details:
+- Type: Immediate execution
+- Purpose: Test the job scheduler's immediate execution capability
+- Output: This text content
+
+The job scheduler should:
+1. Pick up this job immediately
+2. Process it without delay
+3. Mark it as completed
+4. Return this text as output
+
+Current execution timestamp: {{TIMESTAMP}}
+
+Thank you for testing the immediate execution feature of the job scheduler! 
