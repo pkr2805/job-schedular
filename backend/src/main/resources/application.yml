@@ -1,0 +1,110 @@
+# Server Configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/plain
+
+# Spring Configuration
+spring:
+  application:
+    name: job-scheduler
+  
+  # Database Configuration (YugabyteDB/PostgreSQL)
+  datasource:
+    url: jdbc:postgresql://localhost:5433/jobscheduler
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      pool-name: JobSchedulerHikariCP
+  
+  # JPA Properties
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    show-sql: false
+  
+  # Jackson Properties
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: UTC
+    serialization:
+      write-dates-as-timestamps: false
+      indent-output: true
+  
+  # Multipart Properties
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 50MB
+      max-request-size: 75MB
+  
+  # Kafka Configuration (if needed)
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: job-scheduler-group
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+# Job Scheduler Configuration
+job:
+  scheduler:
+    job-directory: file:${user.dir}/backend/binaries
+    executor:
+      pool-size: 10
+    max-concurrent-jobs: 5
+    cleanup:
+      enabled: true
+      days-to-keep: 30
+    retry:
+      max-attempts: 3
+      delay: 5000 # 5 seconds
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when_authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  info:
+    env:
+      enabled: true
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.jobscheduler: INFO
+    org.springframework: INFO
+    org.hibernate: ERROR
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/job-scheduler.log
+    max-size: 10MB
+    max-history: 10 

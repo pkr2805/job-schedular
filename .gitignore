@@ -1,43 +1,78 @@
-# Java/Maven
-backend/target/
+# Java
 *.class
+*.log
 *.jar
 *.war
+*.nar
 *.ear
-*.logs
-.mvn/
-mvnw
-mvnw.cmd
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+replay_pid*
 
-# Frontend (Next.js)
-frontend_new/frontend/node_modules/
-frontend_new/frontend/.next/
-frontend_new/frontend/out/
-frontend_new/frontend/.pnpm-debug.log*
-frontend_new/frontend/npm-debug.log*
-frontend_new/frontend/yarn-debug.log*
-frontend_new/frontend/yarn-error.log*
-frontend_new/frontend/.pnpm-store/
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Spring Boot
+**/application-*.yml
+**/application-*.properties
+!**/application-example.yml
+!**/application-example.properties
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Next.js
+.next/
+out/
+build/
+.vercel
+next-env.d.ts
 
 # IDEs and editors
 .idea/
-.vscode/
-*.swp
-*.swo
 .project
 .classpath
+.c9/
+*.launch
 .settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
 
-# Application specific
-*.env
-*.env.local
-application-local.properties
-h2-data/
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Logs
-logs/
-*.log 
+# Misc
+*.swp
+*.swo 

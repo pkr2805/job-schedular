@@ -1,107 +1,122 @@
-# Job Scheduler
+# Job Scheduler Application
 
-A modern job scheduling application with a Spring Boot backend and Next.js frontend.
+A full-stack job scheduler application that allows users to schedule jobs, run binaries, and set up asynchronous messaging using Kafka.
 
-## Demo
+## Project Structure
 
-All project code is available in the [demo](./demo) directory.
-
-### What's Inside the Demo
-
-- **[Backend](./demo/backend)**: Spring Boot application with REST APIs, job scheduling, and Kafka integration
-- **[Frontend](./demo/frontend)**: Next.js application with modern UI components and real-time notifications
+```
+job-scheduler/
+├── frontend/           # Next.js frontend application
+└── backend/            # Spring Boot backend application (to be created)
+    └── binaries/       # Sample job binaries
+```
 
 ## Features
 
-- Create and manage scheduled jobs
-- Support for immediate and recurring job execution
-- Various frequency options (hourly, daily, weekly)
-- Real-time notifications via Kafka and WebSockets
-- Job status tracking and history
-- Execution logs and errors
-- Dynamic JAR file selection
+- Schedule jobs to run at specific times with timezone support
+- Run jobs immediately
+- Schedule recurring jobs (hourly, daily, weekly, monthly)
+- Schedule delayed Kafka messages
+- Upload and manage binary files (JAR, NPM packages)
+- Track job execution status and history
+
+## Backend Tech Stack
+
+- Java 17+
+- Spring Boot 3.x (Web, JPA, Kafka, Scheduling)
+- H2 Database for job persistence
+- Local file system for binary storage
+- Kafka for messaging
+- Maven for build management
+
+## Frontend Tech Stack
+
+- Next.js 14 with App Router
+- React 18+
+- Tailwind CSS
+- Shadcn UI components
+- TypeScript
 
 ## Getting Started
 
-See the [demo README](./demo/README.md) for detailed setup instructions.
-
-## Technology Stack
-
-### Backend
-- Java 17
-- Spring Boot 3.2.6
-- Spring Data JPA
-- H2 Database
-- Kafka for messaging
-- WebSockets for real-time updates
-
-### Frontend
-- Next.js 15.2
-- React 19.1
-- TypeScript
-- Tailwind CSS
-- Shadcn UI components
-
-## Setup Instructions
-
 ### Prerequisites
+
 - Java 17 or higher
 - Maven
-- Node.js and npm
-- Kafka (optional, will fallback to direct notifications)
+- Node.js 18 or higher
+- Kafka (optional, but required for messaging features)
 
-### Backend Setup
+### Running the Backend
+
 1. Navigate to the backend directory:
-   ```
-   cd backend
-   ```
-2. Build the project:
-   ```
-   mvn clean package
-   ```
-3. Run the Spring Boot application:
-   ```
-   mvn spring-boot:run
-   ```
-   The backend will be available at http://localhost:8083/api
 
-### Frontend Setup
+```bash
+cd backend
+```
+
+2. Build and run the application:
+
+```bash
+mvn spring-boot:run
+```
+
+The backend server will start on http://localhost:8080 with the following configurations:
+- H2 Database (file-based at ./data/jobscheduler)
+- Local file system for binary storage (./binaries)
+- In-memory Kafka if no external Kafka is detected
+
+3. Access the H2 console at http://localhost:8080/h2-console
+   - JDBC URL: jdbc:h2:file:./data/jobscheduler
+   - Username: sa
+   - Password: password
+
+### Running the Frontend
+
 1. Navigate to the frontend directory:
-   ```
-   cd frontend_new/frontend
-   ```
+
+```bash
+cd frontend
+```
+
 2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Run the development server:
-   ```
-   npm run dev
-   ```
-   The frontend will be available at http://localhost:3000
 
-## Usage
+```bash
+npm install
+```
 
-### Creating Jobs
-1. Navigate to "Create Job" page
-2. Select a JAR file
-3. Choose execution type (immediate or scheduled)
-4. For scheduled jobs, select date, time, and frequency
-5. Click "Create Job"
+3. Start the development server:
 
-### Managing Jobs
-- View all jobs in the "Job History" page
-- Check job status and execution details
-- Cancel running or pending jobs
-- View execution logs and Kafka messages
+```bash
+npm run dev
+```
 
-## Architecture
+The frontend application will start on http://localhost:3000.
 
-The application follows a layered architecture:
-- **Controller Layer**: REST APIs for job management
-- **Service Layer**: Business logic for job scheduling and execution
-- **Repository Layer**: Data access using Spring Data JPA
-- **Model Layer**: Entity classes representing the domain
-- **Frontend**: React components and API services
+## Sample Jobs
 
-Jobs are executed asynchronously using a thread pool, and status updates are sent via Kafka and WebSockets.
+The application should include sample job binaries in the `backend/binaries` directory:
+
+1. **Channel Subscription Jobs** (Scheduled Job Examples):
+   - Simulates subscribing to Channel 1 at a specific time
+   - Simulates subscribing to Channel 2 at a specific time
+
+2. **Recurring Jobs**:
+   - Daily wake-up reminder (recurring job example)
+   - 10-minute break reminder (recurring job example)
+
+3. **Immediate Execution**:
+   - Sample text file for testing immediate execution
+
+## API Endpoints
+
+- `POST /api/jobs`: Create a new job
+- `GET /api/jobs`: Get all jobs
+- `GET /api/jobs/{id}`: Get job by ID
+- `POST /api/jobs/{id}/run`: Run a job immediately
+- `POST /api/jobs/{id}/cancel`: Cancel a job
+- `POST /api/jobs/upload-binary`: Upload a binary file
+- `GET /api/jobs/binaries`: List all available binaries
+
+## License
+
+MIT 
