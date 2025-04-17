@@ -129,7 +129,7 @@ export default function CreateJobPage() {
         description: `Your job "${result.name}" has been scheduled`,
         variant: "default",
       })
-      
+
       // Redirect to job history
       router.push("/job-history")
     } catch (error) {
@@ -161,20 +161,20 @@ export default function CreateJobPage() {
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a JAR file" />
-                        </SelectTrigger>
+                      <SelectValue placeholder="Select a JAR file" />
+                    </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        {jarFiles.map((jar) => (
-                          <SelectItem key={jar.id} value={jar.id}>
+                    <SelectContent>
+                      {jarFiles.map((jar) => (
+                        <SelectItem key={jar.id} value={jar.id}>
                             <div>
                               <span className="font-medium">{jar.name}</span>
                               <p className="text-xs text-muted-foreground">{jar.desc}</p>
                             </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                     <FormDescription>Select a JAR file to execute</FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -188,14 +188,14 @@ export default function CreateJobPage() {
                   <FormItem className="space-y-3">
                     <FormLabel>Execution Type</FormLabel>
                     <FormControl>
-                      <RadioGroup
+                  <RadioGroup
                         onValueChange={(value) => {
                           field.onChange(value)
                           setShowFrequency(value === "scheduled")
                         }}
                         defaultValue={field.value}
-                        className="flex flex-col space-y-1"
-                      >
+                    className="flex flex-col space-y-1"
+                  >
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
                             <RadioGroupItem value="immediate" />
@@ -208,7 +208,7 @@ export default function CreateJobPage() {
                           </FormControl>
                           <FormLabel className="font-normal">Schedule for later</FormLabel>
                         </FormItem>
-                      </RadioGroup>
+                  </RadioGroup>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -241,7 +241,7 @@ export default function CreateJobPage() {
                           <PopoverContent className="w-auto p-0" align="start">
                             <Calendar mode="single" selected={field.value} onSelect={field.onChange} initialFocus />
                             <div className="p-3 border-t border-border">
-                              <Input
+                          <Input
                                 type="time"
                                 step="1"
                                 onChange={(e) => {
@@ -251,7 +251,7 @@ export default function CreateJobPage() {
                                   field.onChange(newDate)
                                 }}
                               />
-                            </div>
+                        </div>
                           </PopoverContent>
                         </Popover>
                         <FormDescription>Select when you want the job to run</FormDescription>
@@ -269,28 +269,28 @@ export default function CreateJobPage() {
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select frequency" />
-                            </SelectTrigger>
+                          <SelectValue placeholder="Select frequency" />
+                        </SelectTrigger>
                           </FormControl>
-                          <SelectContent>
-                            <SelectItem value="one-time">One-time</SelectItem>
+                        <SelectContent>
+                          <SelectItem value="one-time">One-time</SelectItem>
                             <SelectItem value="hourly">Hourly</SelectItem>
-                            <SelectItem value="daily">Daily</SelectItem>
-                            <SelectItem value="weekly">Weekly</SelectItem>
-                          </SelectContent>
-                        </Select>
+                          <SelectItem value="daily">Daily</SelectItem>
+                          <SelectItem value="weekly">Weekly</SelectItem>
+                        </SelectContent>
+                      </Select>
                         <FormDescription>How often should this job run?</FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                </>
-              )}
+                  </>
+                )}
 
               <Button type="submit" disabled={isLoading}>
                 {isLoading ? "Creating..." : "Create Job"}
-              </Button>
-            </form>
+                </Button>
+              </form>
           </Form>
         </div>
         <div>
