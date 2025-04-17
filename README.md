@@ -4,7 +4,7 @@ A modern job scheduling application with a Spring Boot backend and Next.js front
 
 ## Demo
 
-The complete demo application is available in the [demo](./demo) directory.
+All project code is available in the [demo](./demo) directory.
 
 ### What's Inside the Demo
 
