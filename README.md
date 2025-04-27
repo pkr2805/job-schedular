@@ -5,18 +5,21 @@ A full-stack job scheduling system that allows users to schedule execution of JA
 ## 📸 Screenshots
 
 ### Create Job Page
-![Create Job Empty](![WhatsApp Image 2025-04-28 at 04 15 28_e0c96a56](https://github.com/user-attachments/assets/6fab34a8-496a-4576-9d72-a0e3db27b614)
+(![WhatsApp Image 2025-04-28 at 04 15 28_e0c96a56](https://github.com/user-attachments/assets/6fab34a8-496a-4576-9d72-a0e3db27b614)
 )
 *Create Job page with no JAR file selected*
 
-![Create Job Selected](/fe/public/images/create-job-selected.png)
+![WhatsApp Image 2025-04-28 at 04 15 47_923ec908](https://github.com/user-attachments/assets/5b0c6220-f6d0-43e7-a113-83a834be93be)
+
 *Create Job page with a JAR file selected*
 
-![Create Job Dropdown](/fe/public/images/create-job-dropdown.png)
+![WhatsApp Image 2025-04-28 at 04 16 06_d057d490](https://github.com/user-attachments/assets/6057e2f4-2494-4c26-8bcb-d7dc463e01f9)
+
 *Create Job page showing available JAR files*
 
 ### Job History Page
-![Job History](/fe/public/images/job-history.png)
+![WhatsApp Image 2025-04-28 at 04 16 37_38c32b33](https://github.com/user-attachments/assets/6897054f-65c8-4b24-b018-54dc74afc1fb)
+
 *Job History page showing executed jobs with their status*
 
 ## 🚀 Features
