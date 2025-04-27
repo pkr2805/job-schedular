@@ -2,7 +2,21 @@
 
 A full-stack job scheduling system that allows users to schedule execution of JAR files at specific times with support for immediate execution, future scheduling, and recurring jobs (hourly, daily, weekly).
 
-![Job Scheduler Dashboard](https://via.placeholder.com/800x400?text=Job+Scheduler+Dashboard)
+## 📸 Screenshots
+
+### Create Job Page
+![Create Job Empty](/fe/public/images/create-job-empty.png)
+*Create Job page with no JAR file selected*
+
+![Create Job Selected](/fe/public/images/create-job-selected.png)
+*Create Job page with a JAR file selected*
+
+![Create Job Dropdown](/fe/public/images/create-job-dropdown.png)
+*Create Job page showing available JAR files*
+
+### Job History Page
+![Job History](/fe/public/images/job-history.png)
+*Job History page showing executed jobs with their status*
 
 ## 🚀 Features
 
@@ -62,10 +76,7 @@ Before running the application, ensure you have the following installed:
    CREATE USER jobscheduler_user WITH PASSWORD 'jobscheduler_password';
    GRANT ALL PRIVILEGES ON DATABASE jobscheduler TO jobscheduler_user;
    ```
-4. Run the setup script to create necessary tables:
-   ```
-   setup-postgres.bat
-   ```
+4. Run the SQL scripts to create necessary tables (you can use pgAdmin or psql)
 
 ### 2. Set up MinIO
 
@@ -97,11 +108,10 @@ Before running the application, ensure you have the following installed:
 ### 4. Prepare JAR Files
 
 1. The project includes sample JAR files in the `jar_files-main` directory
-2. Upload these JAR files to MinIO using the provided script:
+2. Manually upload these JAR files to the `jars` folder in the `data` bucket using the MinIO web interface or curl:
    ```
-   register-jars.ps1
+   curl -X PUT "http://localhost:9000/jars/jar-file-name.jar" --upload-file "path/to/jar-file.jar" -u minioadmin:minioadmin
    ```
-   Or manually upload them to the `jars` folder in the `data` bucket
 
 ### 5. Build and Run the Backend
 
@@ -154,9 +164,7 @@ job-scheduler/
 │       │   ├── repository/     # Data repositories
 │       │   └── service/        # Business logic
 │       └── resources/          # Application properties
-├── jar_files-main/             # Sample JAR files
-├── scripts/                    # Utility scripts
-└── sql_scripts/                # Database setup scripts
+└── jar_files-main/             # Sample JAR files
 ```
 
 ## 🔄 Workflow
@@ -200,17 +208,14 @@ The application includes several sample JAR files:
 
 ### Cleaning Up Unnecessary Files
 
-A cleanup script is provided to remove unnecessary build artifacts and temporary files:
+To clean up unnecessary build artifacts and temporary files, you can:
 
-```
-./cleanup.sh
-```
+1. Delete the `target` directory in the backend project
+2. Delete the `.next` and `node_modules` directories in the frontend project
 
 ### Database Maintenance
 
-For database maintenance, use the following scripts:
-- `setup-postgres.bat` - Initial database setup
-- `fix-postgres.bat` - Fix common PostgreSQL permission issues
+For database maintenance, use pgAdmin or psql to manage your PostgreSQL database.
 
 ## 🤝 Contributing
 
@@ -220,6 +225,32 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🔍 Troubleshooting
+## 📘 How to Use the Application
 
-For common issues and solutions, please refer to the [TROUBLESHOOTING.md](TROUBLESHOOTING.md) file.
+### Creating a New Job
+
+1. Navigate to the "Create Job" page from the navigation menu
+2. Click on the JAR file dropdown and select one of the available JAR files
+3. Choose the execution type:
+   - **Run immediately**: The job will execute as soon as you submit it
+   - **Schedule for later**: You can specify a date and time for the job to run
+4. For scheduled jobs, you can also set recurrence options:
+   - **One-time**: The job will run only once at the scheduled time
+   - **Hourly**: The job will run every hour starting from the scheduled time
+   - **Daily**: The job will run every day at the scheduled time
+   - **Weekly**: The job will run every week on the same day and time
+5. Click the "Create Job" button to submit the job
+
+### Viewing Job History
+
+1. Navigate to the "Job History" page from the navigation menu
+2. View all jobs with their execution details:
+   - JAR Name: The name of the JAR file that was executed
+   - Execution Time: When the job was executed
+   - Type: Whether the job was one-time or recurring
+   - Status: Current status of the job (Completed, Pending, Failed)
+   - Kafka Message: Success or failure message from the job execution
+3. Use the search bar to filter jobs by JAR name or job ID
+4. Use the status filter to view jobs with specific statuses
+5. For pending jobs, you can cancel them using the "Cancel" button
+6. View detailed logs by clicking the "Logs" button
