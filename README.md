@@ -5,7 +5,8 @@ A full-stack job scheduling system that allows users to schedule execution of JA
 ## 📸 Screenshots
 
 ### Create Job Page
-![Create Job Empty](/fe/public/images/create-job-empty.png)
+![Create Job Empty](![WhatsApp Image 2025-04-28 at 04 15 28_e0c96a56](https://github.com/user-attachments/assets/6fab34a8-496a-4576-9d72-a0e3db27b614)
+)
 *Create Job page with no JAR file selected*
 
 ![Create Job Selected](/fe/public/images/create-job-selected.png)
